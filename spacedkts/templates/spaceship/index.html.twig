@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    {% if admin %}
+        <a href="{{ path('spaceship_add') }}" class="btn btn-primary">+ Add Spaceship</a>
+    {% else %}
+    {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Model</th>
+                <th>Manufacturer</th>
+                <th>Value</th>
+                <th>Length</th>
+                <th>Max Atmosphering Speed</th>
+                <th>Crew</th>
+                <th>Passengers</th>
+                <th>Cargo Capacity</th>
+                <th>Consumables</th>
+                <th>Hyperdrive Rating</th>
+                <th>MGLT</th>
+                <th>Starship Class</th>
+                {% if admin %}
+                    <th>Actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for spaceship in spaceships %}
+                {% set onclick = "window.location.href = '" ~ path('spaceship_show', {'id': spaceship.id}) ~ "'" %}
+                <tr class="selectable" onclick="{{ onclick }}">
+                    <td>{{ spaceship.name ?? "null" }}</td>
+                    <td>{{ spaceship.model ?? "null" }}</td>
+                    <td>{{ spaceship.manufacturer ?? "null" }}</td>
+                    <td align='right'>{{ spaceship.cost_in_credits ?? "null" }}</td>
+                    <td align='right'>{{ spaceship.length ?? "null" }}</td>
+                    <td align='right'>{{ spaceship.max_atmosphering_speed ?? "null" }}</td>
+                    <td align='center'>{{ spaceship.crew ?? "null" }}</td>
+                    <td align='center'>{{ spaceship.passengers ?? "null" }}</td>
+                    <td align='right'>{{ spaceship.cargo_capacity ?? "null" }}</td>
+                    <td align='right'>{{ spaceship.consumables ?? "null" }}</td>
+                    <td align='center'>{{ spaceship.hyperdrive_rating ?? "null" }}</td>
+                    <td align='center'>{{ spaceship.MGLT ?? "null" }}</td>
+                    <td align='center'>{{ spaceship.starship_class ?? "null" }}</td>
+                    {% if admin %}
+                        <td>
+                            <div class="actions"> 
+                                <a class="btn btn-tertiary" href="{{ path('spaceship_edit', {'id': spaceship.id}) }}">Edit</a>
+                                <a class="btn btn-secondary" href="{{ path('spaceship_delete', {'id': spaceship.id}) }}">Delete</a>
+                            </div>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+        thead {
+            background-color: rgba(255,255,255,0.5);
+        }
+        .selectable:hover {
+            background-color: yellow;
+            cursor: pointer;
+        }
+        .btn {
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background-color: blue;
+            width: 130px;
+        }
+        .btn-primary:hover {
+            background-color: darkblue;
+        }
+        .btn-secondary {
+            background-color: red;
+        }
+        .btn-secondary:hover {
+            background-color: darkred;
+        }
+        .btn-tertiary {
+            background-color: yellow;
+            color: black;
+        }
+        .btn-tertiary:hover {
+            background-color: darkyellow;
+        }
+        .actions {
+            display: flex;
+            flex-direction: row;
+            column-gap: 5px;
+            height: 100%;
+        }
+    </style>
+{% endblock %}

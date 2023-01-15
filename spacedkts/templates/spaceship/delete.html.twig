@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+<h1>{{ title }}</h1>
+<p>Are you sure you want to delete {{spaceship.name ?? 'spaceship #' ~ spaceship.id}}?</p>
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+{% endblock %}
