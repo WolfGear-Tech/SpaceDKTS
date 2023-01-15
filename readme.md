@@ -1,4 +1,5 @@
 # Welcome to Space DKTS 
+## Project Description
 This is the Space DKTS sales platform, here any citizen of the galaxy check for spaceships ads or ask to place a new ad.
 ___
 ## Project Information
